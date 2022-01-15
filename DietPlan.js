@@ -143,7 +143,7 @@ function Meal(props)
             {/* REMAINING CALORIES */}
             <RemainingCalories data={props.data} changeData={props.changeData} mealName={props.mealName} carbFatRem={props.carbFatRem} protRem={props.protRem} />
             {/* DIALOG TO ALTER THE DEFALUT CALORIES */}
-            <Dialog.Container visible={dialogVisible}>
+            <Dialog.Container visible={dialogVisible} onBackdropPress={() => {setDialogVisible(false)}} useNativeDriver={true}>
                 <Dialog.Title>Set default calories</Dialog.Title>
                 <Dialog.Input onChangeText={(value) => { setDialogInputCarbFat(value) }} placeholder='Calories from carb/fat' keyboardType='numeric' value={dialogInputCarbFat} />
                 <Dialog.Input onChangeText={(value) => { setDialogInputProteins(value) }} placeholder='Calories from proteins' keyboardType='numeric' value={dialogInputProteins} />
@@ -339,6 +339,31 @@ export default function DietPlan({ navigation })
     //THE STATE CONTAINS THE DATA OBJECT
     const [data, setData] = useState({});
 
+    //READ THE DATA FILE AND SET THE DATA STATE WHEN THE COMPONENT MOUNTS FOR THE FIRST TIME
+    useEffect(() => {
+
+        FileSystem.readAsStringAsync(FileSystem.documentDirectory + 'data').then(value => {
+
+            const data = JSON.parse(value);
+            handleChangeData(data);
+        }).catch(error => {});
+    }, []);
+
+    //WHEN THE USER RETURNS ON THE DIETPLAN PAGE, THE DATA FILE IS READ FOR CHANGES
+    useEffect(() => {
+
+        const unsubscribe = navigation.addListener('focus', () => {
+
+            FileSystem.readAsStringAsync(FileSystem.documentDirectory + 'data').then(value => {
+
+                const data = JSON.parse(value);
+                handleChangeData(data);
+            }).catch(error => {});
+        });
+    
+        return unsubscribe;
+      }, [navigation]);
+
     //STYLE
     const styles = Style.DietPlanStyles;
 
@@ -352,16 +377,6 @@ export default function DietPlan({ navigation })
         }
         setData(newData);
     }
-
-    //READ THE DATA FILE AND SET THE DATA STATE WHEN THE COMPONENT MOUNTS FOR THE FIRST TIME
-    useEffect(() => {
-
-        FileSystem.readAsStringAsync(FileSystem.documentDirectory + 'data').then(value => {
-
-            const data = JSON.parse(value);
-            handleChangeData(data);
-        }).catch(error => {});
-    }, []);
 
     return (
         <View style={styles.view}>
