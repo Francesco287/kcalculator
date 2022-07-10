@@ -75,6 +75,42 @@ export const AddMealStyles = StyleSheet.create({
     }
 });
 
+export const Reset = StyleSheet.create({
+    view: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 100,
+        backgroundColor: Colors.lightMedium
+    },
+    pressable: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 50,
+        width: 350,
+        borderRadius: 10,
+        backgroundColor: Colors.medium,
+        elevation: 5,
+        borderWidth: 3,
+        borderColor: Colors.dark
+    },
+    pressablePressed: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 50,
+        width: 350,
+        borderRadius: 10,
+        backgroundColor: Colors.dark,
+        elevation: 5,
+        borderWidth: 3,
+        borderColor: Colors.dark
+    },
+    pressableText: {
+        fontSize: 25,
+        color: Colors.dark
+    }
+});
+
 export const DietPlanSettingsStyles = StyleSheet.create({
     view: {
         flex: 1,

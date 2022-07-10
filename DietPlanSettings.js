@@ -78,6 +78,40 @@ function AddMeal(props)
     );
 }
 
+//THIS COMPONENT RESETS THE DAILY CALORIES
+function Reset(props)
+{
+    //STYLE
+    const styles = Style.Reset;
+
+    //CALLBACK WHEN THE ADD BUTTON IS PRESSED, IT RESETS THE DAILY CALORIES
+    function handlePress()
+    {
+        let data;
+
+        FileSystem.readAsStringAsync(FileSystem.documentDirectory + 'data').then(value => {
+
+            data = JSON.parse(value);
+            
+            for (let element in data)
+            {
+                data[element].carbFatRem = data[element].carbFat;
+                data[element].protRem = data[element].prot;
+            }
+
+            FileSystem.writeAsStringAsync(FileSystem.documentDirectory + 'data', JSON.stringify(data));
+        });
+    }
+
+    return (
+        <View style={styles.view}>
+            <Pressable style={ ({pressed}) => pressed ? styles.pressablePressed : styles.pressable } onPress={() => handlePress()}>
+                <Text style={styles.pressableText}>RESET KCAL</Text>
+            </Pressable>
+        </View>
+    )
+}
+
 //THE EXPORTED COMPONENT
 export default function DietPlanSettings({ navigation })
 {
@@ -88,6 +122,7 @@ export default function DietPlanSettings({ navigation })
         <View style={styles.view}>
             <TitleBar navigation={navigation} />
             <AddMeal />
+            <Reset />
         </View>
     );
 }

@@ -81,7 +81,7 @@ export const TitleBarStyles = StyleSheet.create({
         borderBottomWidth: 5
     },
     pressable: {
-        width: 150,
+        width: 200,
         height: 50,
         borderRadius: 10,
         justifyContent: 'center',
@@ -92,7 +92,7 @@ export const TitleBarStyles = StyleSheet.create({
         borderColor: Colors.dark
     },
     pressablePressed: {
-        width: 150,
+        width: 200,
         height: 50,
         borderRadius: 10,
         justifyContent: 'center',

@@ -162,19 +162,19 @@ function TitleBar(props)
 
     //THESE HOOKS ARE USED FOR THE ANIMATION
     const pressableTranslateX = useRef(
-        new Animated.Value(-150)
+        new Animated.Value(-200)
     ).current;
     const arrowSVGTranslateX = useRef(
-        new Animated.Value(-150)
+        new Animated.Value(-200)
     ).current;
     const arrowSVGRotationZ = useRef(
         new Animated.Value(-90)
     ).current;
     const imageTranslateX = useRef(
-        new Animated.Value(Dimensions.get('screen').width / 2 - 325)
+        new Animated.Value(Dimensions.get('screen').width / 2 - 375)
     ).current;
     const settingsSVGTranslateX = useRef(
-        new Animated.Value(Dimensions.get('screen').width - 520)
+        new Animated.Value(Dimensions.get('screen').width - 570)
     ).current;
 
     //STYLE
@@ -213,18 +213,7 @@ function TitleBar(props)
     //CALLBACK WHEN THE BUTTON IS PRESSED
     function handlePress()
     {
-        let data = {...props.data};
-
-        for (let element in data)
-        {
-            data[element].carbFatRem = data[element].carbFat;
-            data[element].protRem = data[element].prot;
-        }
-
-        FileSystem.writeAsStringAsync(FileSystem.documentDirectory + 'data', JSON.stringify(data)).then(() => {
-
-            props.changeData(data);
-        });
+        props.navigation.navigate('GymPlanning');
     }
 
     //CALLBACK WHEN THE ARROW ICON IS PRESSED, IT STARTS THE ANIMATION
@@ -233,17 +222,17 @@ function TitleBar(props)
         if (!resetKcalPressableOnScreen)
         {
             Animated.timing(settingsSVGTranslateX, {
-                toValue: Dimensions.get('screen').width - 200,
+                toValue: Dimensions.get('screen').width - 250,
                 useNativeDriver: true
             }).start();
 
             Animated.timing(imageTranslateX, {
-                toValue: Dimensions.get('screen').width - 200,
+                toValue: Dimensions.get('screen').width - 250,
                 useNativeDriver: true
             }).start();
     
             Animated.timing(arrowSVGTranslateX, {
-                toValue: Dimensions.get('screen').width - 200,
+                toValue: Dimensions.get('screen').width - 250,
                 useNativeDriver: true
             }).start();
     
@@ -262,7 +251,7 @@ function TitleBar(props)
         else
         {
             Animated.timing(pressableTranslateX, {
-                toValue: -150,
+                toValue: -200,
                 useNativeDriver: true
             }).start();
 
@@ -272,17 +261,17 @@ function TitleBar(props)
             }).start();
 
             Animated.timing(arrowSVGTranslateX, {
-                toValue: -150,
+                toValue: -200,
                 useNativeDriver: true
             }).start();
 
             Animated.timing(imageTranslateX, {
-                toValue: Dimensions.get('screen').width / 2 - 325,
+                toValue: Dimensions.get('screen').width / 2 - 375,
                 useNativeDriver: true
             }).start();
 
             Animated.timing(settingsSVGTranslateX, {
-                toValue: Dimensions.get('screen').width - 520,
+                toValue: Dimensions.get('screen').width - 570,
                 useNativeDriver: true
             }).start();
 
@@ -294,7 +283,7 @@ function TitleBar(props)
         <View style={styles.view}>
             <Animated.View style={animateStyle.pressable}>
                 <Pressable onPress={() => handlePress()} style={ ({pressed}) => pressed ? styles.pressablePressed : styles.pressable }>
-                    <Text style={styles.text}>RESET KCAL</Text>
+                    <Text style={styles.text}>GYM PLANNING</Text>
                 </Pressable>
             </Animated.View>
             <Animated.View style={[styles.arrowSVGView, animateStyle.arrowSVG]}>
