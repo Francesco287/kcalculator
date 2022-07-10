@@ -154,7 +154,6 @@ function Meal(props)
     );
 }
 
-//THE RESET BUTTON, IT RESETS THE REMAINING CALORIES TO THE DEFAULT CALORIES
 function TitleBar(props)
 {
     //STYLE
