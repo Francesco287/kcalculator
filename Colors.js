@@ -13,9 +13,11 @@
 //     dark: '#2C0703',
 // }
 export const Colors = { //BLUE THEME
+    white: '#FFFFFF',
     light: '#CFDEE7',
     lightMedium: '#92B4F4',
     medium: '#5E7CE2',
     mediumDark: '#4472CA',
     dark: '#0A369D',
+    black: '#000000'
 }

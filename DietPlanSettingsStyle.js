@@ -55,7 +55,7 @@ export const AddMealStyles = StyleSheet.create({
         backgroundColor: Colors.medium,
         elevation: 5,
         borderWidth: 3,
-        borderColor: Colors.dark
+        borderColor: Colors.black
     },
     pressablePressed: {
         justifyContent: 'center',
@@ -67,11 +67,11 @@ export const AddMealStyles = StyleSheet.create({
         backgroundColor: Colors.dark,
         elevation: 5,
         borderWidth: 3,
-        borderColor: Colors.dark
+        borderColor: Colors.black
     },
     pressableText: {
         fontSize: 30,
-        color: Colors.dark
+        color: Colors.black
     }
 });
 
@@ -89,10 +89,10 @@ export const Reset = StyleSheet.create({
         height: 50,
         width: 350,
         borderRadius: 10,
-        backgroundColor: Colors.medium,
+        backgroundColor: `#ff2828`,
         elevation: 5,
         borderWidth: 3,
-        borderColor: Colors.dark
+        borderColor: Colors.black
     },
     pressablePressed: {
         justifyContent: 'center',
@@ -100,14 +100,14 @@ export const Reset = StyleSheet.create({
         height: 50,
         width: 350,
         borderRadius: 10,
-        backgroundColor: Colors.dark,
+        backgroundColor: '#7c0000',
         elevation: 5,
         borderWidth: 3,
-        borderColor: Colors.dark
+        borderColor: Colors.black
     },
     pressableText: {
         fontSize: 25,
-        color: Colors.dark
+        color: Colors.black
     }
 });
 
